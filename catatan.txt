@@ -1,0 +1,55 @@
+terdapat 6 cara membuat splash screen :
+1. menambahkan logo kedalam drawable folder 
+- copy file gambar yang ingin di masukan kedalam folder drawable android studio 
+- kemudian di atas folder drawable klik kanan dan paste jika berhasil maka gambar secara otomatis akan masuk kedalam folder tersebut 
+
+2. kemudian add dependencies pada file build.gradle(Module:app) yang berada di dalam folder Gradle Scripts
+- buka filenya setelah itu pergi ke baris code program dependencies
+- kemudian buka link berikut ini "https://developer.android.com/develop/ui/views/launch/splash-screen#kts"
+- kemudian pergi scroll ke bawah ke bagian get started salin kode kotlin yang ada di body seperti berikut ini "implementation("androidx.core:core-splashscreen:1.0.0")"
+- kemudian pastekan ke dalam dependencies yang ada pada file build.gradle(Module:app)
+- setelah itu sync now untuk menyatakan bahwa ada dependencies baru yang ingin di gunakan 
+
+3. langkah selanjutnya memasukan warna pada folder res/values/colors.xml ketikan sintaks berikut ini di dalam <resource>:
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow">#fffc00</color>
+</resources>
+
+4. langkah selanjutnya mengatur warna latar belakang splash screen :
+- masih di dalam folder values sekarang buka folder themes dan klik 2 kali maka secara otomatis akan membukakan sebuah kode program pada jendela dan tambahkan kode program 
+  berikut ini untuk membuat costumatisasi themes 
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SnapchatSplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.SnapchatSplashScreen" parent="Base.Theme.SnapchatSplashScreen" />
+
+    <!--splash screen-->
+    <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+        <!-- frist: backgrounColor, second: icon, third: mainActivities -->
+        <item name="windowSplashScreenBackground">@color/yellow</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ZenVLogo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.SnapchatSplashScreen</item>
+    </style>
+</resources>
+
+5. Menambahkan theme kedalam AndroidManifest.xml :
+- buka manifest/AndroidManifest.xml dan pergi kebagian kode program <activity> tambahkan setelah code program "android:name = ".MainActivity" yaitu =
+  android:theme="@style/Base.Theme.SnapchatSplashScreen"
+
+6. lankah ke enam memanggil layar splash screen yang di buat 
+- buka file MainActivity.kt dan ketikan code program berikut ini :
+
+- terdapat 2 aturan sebelum mengetikan code program :
+1. mengatur waktu tampil splash screen dalam milidetik 
+2. memanggil metode install splash screen 
+
+langkah langkahnya :
+1. tuliskan code program berikut ini sebelum setContentView() = 
